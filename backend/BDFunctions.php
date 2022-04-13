@@ -18,6 +18,7 @@ function loadDictionary(){
         $handle = fopen($filename, "r");
         if ($handle) {
             while(($line = fgets($handle)) !== false){
+                $line = str_replace("\n","",$line);
                 $sql = "INSERT INTO dictionary VALUES 
                 (NULL, '$line', '', $i);";
                 bdQuery($sql);
@@ -29,5 +30,4 @@ function loadDictionary(){
         }
     }
 }
-
 ?>
