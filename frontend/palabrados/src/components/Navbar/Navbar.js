@@ -1,11 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-//Lista de urls de la fuente de datos.
-const urls = {
-    "4": "http://localhost/backend/dictionary.php?length=4",
-    "5": "http://localhost/backend/dictionary.php?length=5",
-    "6": "http://localhost/backend/dictionary.php?length=6"
-};
+import { Link, useNavigate } from 'react-router-dom';
+
+
 /**
  * Componente Navbar. Recibe por props el método setUrl del padre App y lo utiliza en el onClick del dropdown
  * para cambiar la url de la fuente de datos y utilizar un largo de palabra diferente.
@@ -13,7 +9,18 @@ const urls = {
  * @returns 
  */
 export default function Navbar(props) {
+    const navigate = useNavigate();
+    function test() {
 
+    }
+    /**
+     * Funcion que cierra el modal y navega a otra página, de otra manera da problemas
+     */
+    function closeModal() {
+        document.getElementById("closeButton").click();
+        navigate('/newaccount');
+    }
+    test();
     return (
         <nav className="navbar navbar-dark bg-dark">
             <div className="container-fluid">
@@ -21,28 +28,42 @@ export default function Navbar(props) {
                     <img src="logo.png" alt="" width="240" height="40" className="align-text-center" />
                     <Link className="btn btn-secondary ms-2" to="/">Play</Link>
                     <Link className="btn btn-secondary ms-2" to="/leaderboard">Leaderboard</Link>
+
                 </div>
-                <div className="dropstart ">
-                    <button className="btn btn-secondary dropdown-toggle p-2" type="button" id="dropdownDifficulty" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dificultad
+                <div>
+                    <Link className="btn btn-secondary ms-2" to="/newaccount">Crear cuenta</Link>
+                    <button type="button" className="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Inicia sesión
                     </button>
-                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><button className="dropdown-item" value="ugin" onClick={() => {props.setUrl(urls["4"]);
-                                                                                           props.setLength(4);}}>Facil(4)</button>
-                        </li>
-                        <li>
-                            <hr className="dropdown-divider" />
-                        </li>
-                        <li><button className="dropdown-item" value="2016" onClick={() => {props.setUrl(urls["5"]);
-                                                                                           props.setLength(5);}}>Medio(5)</button>
-                        </li>
-                        <li>
-                            <hr className="dropdown-divider" />
-                        </li>
-                        <li><button className="dropdown-item" value="2017" onClick={() => {props.setUrl(urls["6"]);
-                                                                                           props.setLength(6);}}>Dificil(6)</button>
-                        </li>
-                    </ul>
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content bg-dark">
+                                <div className="modal-header">
+                                    <h5 className="modal-title text-light" id="exampleModalLabel">Inicia sesión</h5>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    <form>
+                                        <div className="form-group text-center mx-4">
+                                            <label htmlFor="user" className="text-light">Nombre de usuario:</label><br />
+                                            <input type="text" name="user" className="form-control"></input>
+                                        </div>
+                                        <div className="form-group text-center mt-4 mx-4">
+                                            <label htmlFor="password" className="text-light">Contraseña</label><br />
+                                            <input type="password" name="password" className="form-control"></input>
+                                        </div>
+                                        <div className="form-group text-center mt-4">
+                                            <button type="button" className="btn btn-secondary">Iniciar sesion</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary me-auto" id="closeButton" data-bs-dismiss="modal">Cerrar</button>
+                                    <button className="btn btn-secondary " onClick={closeModal}>Crear cuenta</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>

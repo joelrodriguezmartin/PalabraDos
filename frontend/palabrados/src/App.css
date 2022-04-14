@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #212529 ;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -56,9 +56,9 @@
 .main {
   height: 100vh;
 }
-.gamecontainer{
+/*.gamecontainer{
 
-}
+}*/
 .none{
   display: none;
 }
@@ -74,7 +74,17 @@
   color: black;
 }
 .gamebutton{
-  background-color: #282c34;
+  background-color: #212529 ;
   color: white;
   margin-top: 15px;
 }
+.bg-modal{
+  background-color: #212529 ; 
+}
+.registerinput{
+  max-width: 50%;
+}
+.validity{
+  font-size: 75%;
+}
+

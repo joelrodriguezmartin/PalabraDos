@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Index from './components/Index/Index';
 import Leaderboard from './components/Leaderboard/Leaderboard';
+import NewAccount from './components/NewAccount/NewAccount'
 
 function App() {
   const [wordList, setWordList] = useState([]);
@@ -24,14 +25,17 @@ function App() {
     return (
       <>
         <Router>
-          <Navbar setUrl={setUrl} setLength={setLength}></Navbar>
+          <Navbar></Navbar>
           <div className="container-fluid bg-secondary text-light">
             <Routes>
               <Route exact path='/' element={
-                <Index length={length} wordList={wordList}></Index>}>
+                <Index length={length} wordList={wordList} setUrl={setUrl} setLength={setLength}></Index>}>
               </Route>
               <Route exact path='/leaderboard' element={
                 <Leaderboard></Leaderboard>}>
+              </Route>
+              <Route exact path='/newaccount' element={
+                <NewAccount></NewAccount>}>
               </Route>
             </Routes>
           </div>

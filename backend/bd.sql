@@ -6,18 +6,18 @@ GRANT ALL ON palabrados.* TO 'palabrados'@'localhost';
 use palabrados;
 
 CREATE TABLE users (
-    user_id INT NOT NULL AUTO_INCREMENT,
-    user_name CHAR(15) NOT NULL,
+    userid INT NOT NULL AUTO_INCREMENT,
+    username CHAR(15) NOT NULL,
     user_hashpass CHAR(255) NOT NULL,
-    PRIMARY KEY(user_id)
+    PRIMARY KEY(userid)
 )   ENGINE=InnoDB;
 
 CREATE TABLE scores (
     score_id INT NOT NULL AUTO_INCREMENT,
-    user_id INT NOT NULL,
+    userid INT NOT NULL,
     score INT NOT NULL,
     PRIMARY KEY(score_id),
-    FOREIGN KEY(user_id)REFERENCES users(user_id)
+    FOREIGN KEY(userid)REFERENCES users(userid)
 )   ENGINE=InnoDB;
 
 CREATE TABLE dictionary (

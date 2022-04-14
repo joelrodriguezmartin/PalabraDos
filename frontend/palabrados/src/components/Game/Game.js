@@ -17,6 +17,7 @@ export default function Game(props) {
     console.log(props.length);
     console.log(props.wordList);
     console.log(currentWord);
+
   }
   /**
    * Función que renderiza los inputs de letras dependiendo del tamaño de palabra e intento
@@ -29,7 +30,7 @@ export default function Game(props) {
       let inputArray = [];
       for (let i = 0; i < props.length; i++) {
         inputArray.push(
-          <input type="text" maxLength="1" id={count + "-" + i} key={count + "-" + i} className="small-input" onKeyUp={autoTab}/>
+          <input type="text" maxLength="1" id={count + "-" + i} key={count + "-" + i} className="small-input" onKeyUp={autoTab} />
         )
       }
       uiItems.push(
@@ -38,22 +39,27 @@ export default function Game(props) {
             <div>
               {inputArray}
             </div>
-            <button type="submit" className="btn gamebutton">Check</button>
+            <button type="button" className="btn gamebutton me-3" onClick={() => {
+              if (window.confirm("¿Estas seguro de cancelar la partida?")){
+                reset();
+              }
+            }}>Cancelar partida</button>
+            <button type="submit" className="btn gamebutton">Comprobar</button>
           </form>
         </div>
       )
     }
     return uiItems;
   };
-  function autoTab(event){
+  function autoTab(event) {
     let inputs = Array.from(document.getElementsByClassName("small-input"));
     let current = inputs.indexOf(event.target);
-    if (event.target.value.length === parseInt(event.target.attributes.maxlength.value)){ 
-      if (current < props.length-1){
+    if (event.target.value.length === parseInt(event.target.attributes.maxlength.value)) {
+      if (current < props.length - 1) {
         inputs[current + 1].focus();
       }
-    }else if (event.target.value.length < 1) {
-      if (current > 0){
+    } else if (event.target.value.length < 1) {
+      if (current > 0) {
         inputs[current - 1].focus();
       }
     }
@@ -65,13 +71,13 @@ export default function Game(props) {
   function renderEnd() {
     let uiItems = [];
     if (gameEnded) {
-      uiItems.push(<div key="a">Partida terminada</div>);
+      uiItems.push(<div key="a" >Partida terminada</div>);
       if (winBool) {
         uiItems.push(<div key="b">Has ganado con una puntuacion de {score}</div>);
       } else {
         uiItems.push(<div key="b">Has perdido con una puntuacion de {score}</div>);
       }
-      uiItems.push(<button key="c" onClick={reset} className="btn gamebutton">Jugar otra vez</button>)
+      uiItems.push(<button key="c" onClick={reset} className="btn gamebutton">Volver a empezar</button>)
     }
     return uiItems;
   };
@@ -183,10 +189,10 @@ export default function Game(props) {
             for (let i = 0; i < currentWord.length; i++) {
               if (currentWord[i] === guessLetter) {
                 if (i === position) {
-                  successIndexes.push(i);
+                  successIndexes.push(position);
                   successes = successIndexes.length;
                 } else {
-                  coincidenceIndexes.push(i);
+                  coincidenceIndexes.push(position);
                   coincidences = coincidenceIndexes.length;
                 }
               }
