@@ -39,7 +39,7 @@ export default function Index(props) {
           </li>
         </ul>
       </div>
-      <Game length={props.length} wordList={props.wordList}></Game>
+      <Game length={props.length} wordList={props.wordList} loggedIn = {props.loggedIn}></Game>
     </div>
   )
 }

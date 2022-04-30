@@ -26,7 +26,14 @@ export default function NewAccount() {
     }
   };
   async function registerUser(url) {
-    const response = await fetch(url);
+    const response = await fetch(url/*, {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({username: user, password: pass})
+    }*/);
     const data = await response.json();
     if (data.created && data.exists) {
       alert("Tu cuenta se ha creado satisfactoriamente, inicia sesión")

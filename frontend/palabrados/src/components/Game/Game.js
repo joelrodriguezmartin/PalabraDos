@@ -40,7 +40,7 @@ export default function Game(props) {
               {inputArray}
             </div>
             <button type="button" className="btn gamebutton me-3" onClick={() => {
-              if (window.confirm("¿Estas seguro de cancelar la partida?")){
+              if (window.confirm("¿Estas seguro de cancelar la partida?")) {
                 reset();
               }
             }}>Cancelar partida</button>
@@ -146,6 +146,9 @@ export default function Game(props) {
     setScore(calculateScore(true));
     setWinBool(true);
     setGameEnded(true);
+    if (props.loggedIn) {
+      saveScore();
+    }
   }
   /**
    * Función de derrota de partida
@@ -154,6 +157,14 @@ export default function Game(props) {
     setScore(calculateScore(false));
     setWinBool(false);
     setGameEnded(true);
+    if (props.loggedIn) {
+      saveScore();
+    }
+  }
+  async function saveScore() {
+    const response = await fetch("http://localhost/backend/register.php?score="+score);
+    await response.json();
+
   }
   /**
    * Función que realiza las comprobaciones de letras y posiciones, la más importante del juego

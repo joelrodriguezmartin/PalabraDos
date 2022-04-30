@@ -11,7 +11,16 @@ function App() {
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const [url, setUrl] = useState("http://localhost/backend/dictionary.php?length=5");
   const [length, setLength] = useState(5);
-
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  async function checkSession() {
+    const response = await fetch("http://localhost/backend/checksession.php", {credentials: "include"});
+    const data = await response.json();
+    if (data.isLoggedIn){
+      setLoggedIn(true);
+      setUsername(data.username);
+    }
+  }
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(url);
@@ -22,14 +31,15 @@ function App() {
     fetchData();
   }, [url]);
   if (dataIsLoaded) {
+    checkSession();
     return (
       <>
         <Router>
-          <Navbar></Navbar>
+          <Navbar loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} setUserName={setUsername}></Navbar>
           <div className="container-fluid bg-secondary text-light">
             <Routes>
               <Route exact path='/' element={
-                <Index length={length} wordList={wordList} setUrl={setUrl} setLength={setLength}></Index>}>
+                <Index length={length} wordList={wordList} setUrl={setUrl} setLength={setLength} loggedIn = {loggedIn}></Index>}>
               </Route>
               <Route exact path='/leaderboard' element={
                 <Leaderboard></Leaderboard>}>
