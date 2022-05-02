@@ -36,7 +36,7 @@ export default function Navbar(props) {
 
     };
     async function loginUser(url) {
-        const response = await fetch(url, {credentials: "include"});
+        const response = await fetch(url, { credentials: "include" });
         const data = await response.json();
         if (data.isLoggedIn) {
             props.setLoggedIn(true);
@@ -48,8 +48,8 @@ export default function Navbar(props) {
             alert("Fallo en usuario o contraseña");
         }
     }
-    async function logoutUser(){
-        const response = await fetch("http://localhost/backend/logout.php", {credentials: "include"});
+    async function logoutUser() {
+        const response = await fetch("http://localhost/backend/logout.php", { credentials: "include" });
         await response.json();
         props.setLoggedIn(false);
         props.setUserName("");
@@ -60,11 +60,12 @@ export default function Navbar(props) {
             <div className="container-fluid">
                 <div className="navbar-brand rounded-3 p-2">
                     <img src="logo.png" alt="" width="240" height="40" className="align-text-center" />
-                    <Link className="btn btn-secondary ms-2" to="/">Play</Link>
+                    <Link className="btn btn-secondary ms-2" to="/">Jugar</Link>
                     <Link className="btn btn-secondary ms-2" to="/leaderboard">Leaderboard</Link>
 
                 </div>
                 <div>
+                    {props.loggedIn ? <Link className="btn btn-secondary ms-2" to="/profile">Perfil</Link> : null}
                     {props.loggedIn ? null : <Link className="btn btn-secondary ms-2" to="/newaccount">Crear cuenta</Link>}
                     {props.loggedIn ? <button type="button" className="btn btn-secondary ms-2" onClick={logoutUser}>Cerrar sesión</button> : <button type="button" className="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Inicia sesión

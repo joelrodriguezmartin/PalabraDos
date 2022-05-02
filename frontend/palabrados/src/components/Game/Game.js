@@ -143,28 +143,30 @@ export default function Game(props) {
    * Función de victoria de partida
    */
   function win() {
-    setScore(calculateScore(true));
+    let localScore = calculateScore(true);
+    setScore(localScore);
     setWinBool(true);
     setGameEnded(true);
     if (props.loggedIn) {
-      saveScore();
+      saveScore(localScore);
     }
   }
   /**
    * Función de derrota de partida
    */
   function lose() {
-    setScore(calculateScore(false));
+    let localScore = calculateScore(false);
+    setScore(localScore);
     setWinBool(false);
     setGameEnded(true);
     if (props.loggedIn) {
-      saveScore();
+      saveScore(localScore);
     }
   }
-  async function saveScore() {
-    const response = await fetch("http://localhost/backend/register.php?score="+score);
-    await response.json();
-
+  async function saveScore(localScore) {
+    const response = await fetch("http://localhost/backend/savescore.php?score="+localScore, {credentials: "include"});
+    const data = await response.json();
+    console.log(data);
   }
   /**
    * Función que realiza las comprobaciones de letras y posiciones, la más importante del juego

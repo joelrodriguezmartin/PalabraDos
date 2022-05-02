@@ -87,4 +87,18 @@
 .validity{
   font-size: 75%;
 }
+.leaderboard th{
+  font-size: larger;
+  font-weight: 800;
+}
+.profile {
+  font-size: xx-large;
+  font-weight: 400;
+}
+.profile1 {
+  font-size: xx-large;
+  font-weight: 800;
+}
+
+
 

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Index from './components/Index/Index';
 import Leaderboard from './components/Leaderboard/Leaderboard';
 import NewAccount from './components/NewAccount/NewAccount'
+import Profile from './components/Profile/Profile';
 
 function App() {
   const [wordList, setWordList] = useState([]);
@@ -13,6 +14,7 @@ function App() {
   const [length, setLength] = useState(5);
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+
   async function checkSession() {
     const response = await fetch("http://localhost/backend/checksession.php", {credentials: "include"});
     const data = await response.json();
@@ -21,6 +23,7 @@ function App() {
       setUsername(data.username);
     }
   }
+  
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(url);
@@ -45,7 +48,10 @@ function App() {
                 <Leaderboard></Leaderboard>}>
               </Route>
               <Route exact path='/newaccount' element={
-                <NewAccount></NewAccount>}>
+                <NewAccount loggedIn = {loggedIn}></NewAccount>}>
+              </Route>
+              <Route exact path='/profile' element={
+                <Profile loggedIn = {loggedIn} username={username}></Profile>}>
               </Route>
             </Routes>
           </div>

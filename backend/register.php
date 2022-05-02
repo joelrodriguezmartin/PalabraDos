@@ -11,6 +11,12 @@ function registerUser($username, $password) {
         $sql = ("INSERT INTO users VALUES (NULL, '$username', '$password')");
         $result = bdQuery($sql); //Retorna falso si falla;
         if($result){
+            $sql2 = ("SELECT userid FROM users where username = '$username'");
+            $result = bdQuery($sql2);//Seleccionamos el id que acabamos de crear
+            if($userid = $result->fetch(PDO::FETCH_COLUMN)){
+                $sql3 = ("INSERT INTO scores VALUES (NULL, '$userid', 0)");
+                $result = bdQuery($sql3);//Y lo insertamos en la tabla de puntuaciones con puntuacion 0
+            };
             return '{"created": true, "exists": true}';//El usuario se ha creado
         }else{
             return '{"created": false, "exists": false}';//Fallo en creacion

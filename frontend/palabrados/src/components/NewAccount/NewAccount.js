@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export default function NewAccount() {
+export default function NewAccount(props) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (props.loggedIn) {
+      navigate("/");
+    }
+  }, [props.loggedIn, navigate]);
   /**
    * Functión ejecutada en el submit, evita la recarga de la página y recoge los datos de los
    * input de tipo texto y los introduce en un array.
@@ -44,6 +50,7 @@ export default function NewAccount() {
       alert("Fallo en creación, intentalo de nuevo más tarde");
     }
   }
+
   return (
     <div className="container main">
       <form className="text-center pt-3" name="formName" onSubmit={handleSubmit}>
@@ -66,4 +73,6 @@ export default function NewAccount() {
       </form>
     </div>
   )
+
+
 }
