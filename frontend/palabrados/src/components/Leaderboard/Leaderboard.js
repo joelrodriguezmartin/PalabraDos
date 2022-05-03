@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
+/**
+ * Componente Leaderboard. Recibe la información de los 10 usuarios con mayores puntuaciones desde el backend y los muestra en una tabla.
+ * @returns 
+ */
 export default function Leaderboard() {
-  const [leaderboardData, setLeaderboardData] = useState([]);
-  const [boardIsLoaded, setBoardIsLoaded] = useState(false);
+  const [leaderboardData, setLeaderboardData] = useState([]); //Datos de puntuaciones y usuarios
+  const [boardIsLoaded, setBoardIsLoaded] = useState(false); //Variable de carga
 
-  useEffect(() => {
+  useEffect(() => { //Cargamos los datos de la base de datos en efecto
     async function fetchData() {
       const response = await fetch("http://localhost/backend/leaderboard.php");
       const data = await response.json();
@@ -13,8 +17,11 @@ export default function Leaderboard() {
     }
     fetchData();
   }, []);
-
-  function renderLeaderBoard() {
+  /**
+   * Función que genera una tabla html a partir de los datos de la base de datos.
+   * @returns 
+   */
+  function renderLeaderBoard() { 
     let tableArray = [];
     for (let index = 0; index < leaderboardData.length; index++) {
       tableArray.push(

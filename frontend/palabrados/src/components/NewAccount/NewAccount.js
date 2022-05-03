@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Componente NewAccount. Permite el registro de usuarios verificando que se cumplan las condiciones de tamaño de nombre de usuario y contraseña
+ * @param {*} props 
+ * @returns 
+ */
 export default function NewAccount(props) {
-  const navigate = useNavigate();
+  const navigate = useNavigate();//Navegador react
 
-  useEffect(() => {
+  useEffect(() => {//En el caso de que el usuario tenga la sesión iniciada lo devolvemos a la raíz
     if (props.loggedIn) {
       navigate("/");
     }
@@ -20,9 +25,8 @@ export default function NewAccount(props) {
     const elements = event.target.elements;
     if (elements["registerpassword1"].value === elements["registerpassword2"].value) {
       if (elements["registerpassword1"].value.length >= 5 || elements["registerusername"] >= 5) {
-        let url = "http://localhost/backend/register.php?username=" + elements["registerusername"].value + "&password=" + elements["registerpassword1"].value;
-        console.log(url);
-        registerUser(url);
+        //let url = "http://localhost/backend/register.php?username=" + elements["registerusername"].value + "&password=" + elements["registerpassword1"].value;
+        registerUser(elements["registerusername"].value, elements["registerpassword1"].value);
       } else {
         alert("La contraseña y el usuario deben tener al menos 5 caracteres")
       }
@@ -31,15 +35,21 @@ export default function NewAccount(props) {
       alert("Las contraseñas no coinciden");
     }
   };
-  async function registerUser(url) {
-    const response = await fetch(url/*, {
+  /**
+   * Función que recibe los datos de usuario y se comunica con el backend para realizar un registro.
+   * @param {*} user 
+   * @param {*} pass 
+   */
+  async function registerUser(user, pass) {
+    const url = "http://localhost/backend/register.php";
+    let formdata = new FormData();
+    formdata.append("username", user);
+    formdata.append("password", pass);
+    const response = await fetch(url, {
       method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({username: user, password: pass})
-    }*/);
+      //credentials: "include", 
+      body: formdata
+    });
     const data = await response.json();
     if (data.created && data.exists) {
       alert("Tu cuenta se ha creado satisfactoriamente, inicia sesión")

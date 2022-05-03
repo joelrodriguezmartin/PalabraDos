@@ -1,23 +1,26 @@
 import React, { useState } from 'react'
-
+import Rules from '../Rules/Rules';
+/**
+ * Componente de juego, contiene toda la lógica necesaria para jugar y muestra todos los componentes necesarios para 
+ * la interacción con el usuario
+ * @param {*} props 
+ * @returns 
+ */
 export default function Game(props) {
-  const [tries, setTries] = useState(0);
-  const [currentWord, setCurrentWord] = useState("");
-  const [gameEnded, setGameEnded] = useState(false);
-  const [winBool, setWinBool] = useState(false);
-  const [score, setScore] = useState(0);
+  const [tries, setTries] = useState(0); //Numero de intentos
+  const [currentWord, setCurrentWord] = useState(""); //Palabra actual
+  const [gameEnded, setGameEnded] = useState(false); //Variable de partida terminada
+  const [winBool, setWinBool] = useState(false); //Variable de victoria/derrota
+  const [score, setScore] = useState(0); //Puntuación del usuario
 
-  let coincidences = 0;
-  let successes = 0;
+  let coincidences = 0; //Coincidencias
+  let successes = 0; //Aciertos
 
   /**
    * Funcion de desarrollo. hace lo que se necesite en el momento 
    */
   function test() {
-    console.log(props.length);
-    console.log(props.wordList);
     console.log(currentWord);
-
   }
   /**
    * Función que renderiza los inputs de letras dependiendo del tamaño de palabra e intento
@@ -39,18 +42,22 @@ export default function Game(props) {
             <div>
               {inputArray}
             </div>
-            <button type="button" className="btn gamebutton me-3" onClick={() => {
+            <button type="button" className="btn btn-dark me-3" onClick={() => {
               if (window.confirm("¿Estas seguro de cancelar la partida?")) {
                 reset();
               }
             }}>Cancelar partida</button>
-            <button type="submit" className="btn gamebutton">Comprobar</button>
+            <button type="submit" className="btn btn-dark">Comprobar</button>
           </form>
         </div>
       )
     }
     return uiItems;
   };
+  /**
+   * Función utilizada para mover el focus entre los campos de letra del juego
+   * @param {*} event 
+   */
   function autoTab(event) {
     let inputs = Array.from(document.getElementsByClassName("small-input"));
     let current = inputs.indexOf(event.target);
@@ -77,7 +84,12 @@ export default function Game(props) {
       } else {
         uiItems.push(<div key="b">Has perdido con una puntuacion de {score}</div>);
       }
-      uiItems.push(<button key="c" onClick={reset} className="btn gamebutton">Volver a empezar</button>)
+      if (props.loggedIn){
+        uiItems.push(<div key="c">Se ha sumado la puntuación a tu perfil, {props.username}</div>);
+      }else{
+        uiItems.push(<div key="c">Inicia sesión o regístrate para acumular tus puntuaciones</div>);
+      }
+      uiItems.push(<button key="d" onClick={reset} className="btn btn-dark mt-2">Jugar otra vez</button>)
     }
     return uiItems;
   };
@@ -105,7 +117,7 @@ export default function Game(props) {
     document.getElementById("dropdownDifficulty").disabled = true;
   };
   /**
-   * Functión ejecutada en el submit, evita la recarga de la página y recoge los datos de los
+   * Función ejecutada en el submit, evita la recarga de la página y recoge los datos de los
    * input de tipo texto y los introduce en un array.
    * @param {*} event 
    */
@@ -163,6 +175,10 @@ export default function Game(props) {
       saveScore(localScore);
     }
   }
+  /**
+   * Función que llama al backend para guardar la puntuación del usuario registrado
+   * @param {*} localScore 
+   */
   async function saveScore(localScore) {
     const response = await fetch("http://localhost/backend/savescore.php?score="+localScore, {credentials: "include"});
     const data = await response.json();
@@ -177,9 +193,9 @@ export default function Game(props) {
     //En los primeros dos casos no avanzamos intento
     if (arrayLetters.some(function (e) { return e === "" || e === " " })) {
       alert("Rellena todas las letras");
-    } /*else if (!props.wordList.includes(arrayLetters.join(""))) {
+    } else if (!props.wordList.includes(arrayLetters.join(""))) {
       alert("La palabra que has introducido no está en nuestro diccionario") //comprueba si esta en el diccionario, comentar para test
-    }*/
+    }
     else if (tries <= props.length) {
       if (arrayLetters.join("") === currentWord) { //Primero comprobamos si las palabras son iguales pa ahorrar cálculos
         for (const key in inputs) {
@@ -240,9 +256,12 @@ export default function Game(props) {
   test();
   return (
     <div className="gamecontainer text-center">
-      <button type="button" onClick={newGame} id="startbutton" className="btn gamebutton">Empezar partida</button>
+      {tries !== 0 ? null : <div className="text-center mb-2">Dificultad actual: {props.length}</div>}
+      <button type="button" onClick={newGame} id="startbutton" className="btn btn-dark">Empezar partida</button>
       {renderEnd()}
       {renderForms()}
+      {tries !== 0 ? null : <Rules></Rules>}
     </div>
+    
   )
 }

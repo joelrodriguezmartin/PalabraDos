@@ -53,8 +53,8 @@
 .base {
   color: black;
 }
-.main {
-  height: 100vh;
+body{
+  background-color: #6c757d !important;
 }
 /*.gamecontainer{
 
@@ -73,11 +73,25 @@
   margin: 15px 2px; 
   color: black;
 }
-.gamebutton{
+.guess{
+  background-color: #D95701;
+  border-radius: 5px;
+}
+.good{
+  background-color: #1147DD;
+  border-radius: 5px;
+}
+.points {
+  background-color: green;
+}
+.underline{
+  text-decoration: underline;
+}
+/*.gamebutton{
   background-color: #212529 ;
   color: white;
   margin-top: 15px;
-}
+}*/
 .bg-modal{
   background-color: #212529 ; 
 }

@@ -8,7 +8,8 @@ function registerUser($username, $password) {
         return '{"created": false, "exists": true}';//El usuario ya existe
     }
     else {
-        $sql = ("INSERT INTO users VALUES (NULL, '$username', '$password')");
+        $hashpass = password_hash($password, PASSWORD_DEFAULT);
+        $sql = ("INSERT INTO users VALUES (NULL, '$username', '$hashpass')");
         $result = bdQuery($sql); //Retorna falso si falla;
         if($result){
             $sql2 = ("SELECT userid FROM users where username = '$username'");
@@ -23,7 +24,7 @@ function registerUser($username, $password) {
         }
     };
 };
-if (isset($_GET["username"])){
-    echo registerUser($_GET["username"], $_GET["password"]);
+if (isset($_POST["username"])){
+    echo registerUser($_POST["username"], $_POST["password"]);
 };
 

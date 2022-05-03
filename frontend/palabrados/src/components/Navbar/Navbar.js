@@ -3,40 +3,59 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 /**
- * Componente Navbar. Recibe por props el método setUrl del padre App y lo utiliza en el onClick del dropdown
- * para cambiar la url de la fuente de datos y utilizar un largo de palabra diferente.
+ * Componente Navbar. Siempre será visible y permite la navegación e inicio de sesión del usuario.
  * @param {*} props 
  * @returns 
  */
 export default function Navbar(props) {
-    const navigate = useNavigate();
+    const navigate = useNavigate();//Navegador react
+    /**
+     * Función de desarrollo, hace lo necesario en cada momento
+     */
     function test() {
 
     }
     /**
-     * Funcion que cierra el modal y navega a otra página, de otra manera da problemas
+     * Funcion que cierra el modal y navega a otra página
      */
     function closeModal() {
         document.getElementById("closeButton").click();
         navigate('/newaccount');
     }
+    /**
+     * Función que se encarga de recoger los datos del formulario de inicio de sesión 
+     * @param {*} event 
+     */
     function handleSubmit(event) {
         event.preventDefault(); //Evita el comportamiento normal de submit (recargar página y enviar en post/get)
         //Validacion
         const elements = event.target.elements;
 
         if (elements["loginpassword"].value.length >= 5 || elements["loginusername"] >= 5) {
-            let url = "http://localhost/backend/login.php?username=" + elements["loginusername"].value + "&password=" + elements["loginpassword"].value;
-            console.log(url);
-            loginUser(url)
+            //let url = "http://localhost/backend/login.php?username=" + elements["loginusername"].value + "&password=" + elements["loginpassword"].value;
+            //console.log(url);
+            loginUser(elements["loginusername"].value, elements["loginpassword"].value);
         } else {
             alert("La contraseña y el usuario deben tener al menos 5 caracteres")
         }
 
 
     };
-    async function loginUser(url) {
-        const response = await fetch(url, { credentials: "include" });
+    /**
+     * Función que recibe los datos del usuario y llama al backend para realizar un inicio de sesión
+     * @param {*} user 
+     * @param {*} pass 
+     */
+    async function loginUser(user, pass) {
+        const url = "http://localhost/backend/login.php"
+        let formdata = new FormData();
+        formdata.append("username", user);
+        formdata.append("password", pass);
+        const response = await fetch(url, { 
+            method: 'post',
+            credentials: "include", 
+            body: formdata
+        });
         const data = await response.json();
         if (data.isLoggedIn) {
             props.setLoggedIn(true);
@@ -62,7 +81,6 @@ export default function Navbar(props) {
                     <img src="logo.png" alt="" width="240" height="40" className="align-text-center" />
                     <Link className="btn btn-secondary ms-2" to="/">Jugar</Link>
                     <Link className="btn btn-secondary ms-2" to="/leaderboard">Leaderboard</Link>
-
                 </div>
                 <div>
                     {props.loggedIn ? <Link className="btn btn-secondary ms-2" to="/profile">Perfil</Link> : null}

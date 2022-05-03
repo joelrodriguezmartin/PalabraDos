@@ -7,7 +7,12 @@ const urls = {
   "5": "http://localhost/backend/dictionary.php?length=5",
   "6": "http://localhost/backend/dictionary.php?length=6"
 };
-
+/**
+ * Componente Index, se trata del componente padre de Game. Contiene el seleccionador de dificultad, a través del que comunica a la app que lista de 
+ * palabras debe descargar del back end.
+ * @param {*} props 
+ * @returns 
+ */
 export default function Index(props) {
   return (
     <div className="container main">
@@ -39,7 +44,8 @@ export default function Index(props) {
           </li>
         </ul>
       </div>
-      <Game length={props.length} wordList={props.wordList} loggedIn = {props.loggedIn}></Game>
+      <Game length={props.length} wordList={props.wordList} loggedIn = {props.loggedIn} username = {props.username}></Game>
+      
     </div>
   )
 }
