@@ -78,7 +78,7 @@ export default function Navbar(props) {
         <nav className="navbar navbar-dark bg-dark">
             <div className="container-fluid">
                 <div className="navbar-brand rounded-3 p-2">
-                    <img src="logo.png" alt="" width="240" height="40" className="align-text-center" />
+                    <img src="logo.png" alt="" width="240" height="40" className="align-text-center logo" />
                     <Link className="btn btn-secondary ms-2" to="/">Jugar</Link>
                     <Link className="btn btn-secondary ms-2" to="/leaderboard">Leaderboard</Link>
                 </div>

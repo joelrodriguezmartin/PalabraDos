@@ -65,7 +65,7 @@ body{
 .small-input {
   text-align: center;
   font-size: 40px;
-  width: 2em !important;
+  width: 2em;
   height: 2em;
   text-transform: capitalize;
   border: 0px;
@@ -113,6 +113,17 @@ body{
   font-size: xx-large;
   font-weight: 800;
 }
+
+@media (max-width: 600px) {
+  .logo{
+    display:none !important;
+  }
+  .small-input{
+    width: 1em;
+    height: 1em;
+  }
+}
+
 
 
 

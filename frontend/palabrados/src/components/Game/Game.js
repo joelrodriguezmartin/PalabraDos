@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Rules from '../Rules/Rules';
 /**
- * Componente de juego, contiene toda la lógica necesaria para jugar y muestra todos los componentes necesarios para 
+ * Componente Game, contiene toda la lógica necesaria para jugar y muestra todos los componentes necesarios para 
  * la interacción con el usuario
  * @param {*} props 
  * @returns 
