@@ -33,7 +33,7 @@ export default function Game(props) {
       let inputArray = [];
       for (let i = 0; i < props.length; i++) {
         inputArray.push(
-          <input type="text" maxLength="1" id={count + "-" + i} key={count + "-" + i} className="small-input" onKeyUp={autoTab} />
+          <input type="text" maxLength="1" id={count + "-" + i} key={count + "-" + i} className="small-input" onChange={autoTab} onKeyDown={deleteAlso}/>
         )
       }
       uiItems.push(
@@ -54,12 +54,23 @@ export default function Game(props) {
     }
     return uiItems;
   };
+  function deleteAlso(event){
+    let inputs = Array.from(document.getElementsByClassName("small-input"));
+    let current = inputs.indexOf(event.target);
+    if (event.target.value.length < 1) {
+      if (current > 0) {
+        if (event.keyCode === 8){
+          inputs[current - 1].value = "";
+          inputs[current - 1].focus();
+        } 
+      }
+    }
+  }
   /**
    * Función utilizada para mover el focus entre los campos de letra del juego
    * @param {*} event 
    */
   function autoTab(event) {
-    //event.keyCode
     let inputs = Array.from(document.getElementsByClassName("small-input"));
     let current = inputs.indexOf(event.target);
     if (event.target.value.length === parseInt(event.target.attributes.maxlength.value)) {
@@ -68,9 +79,6 @@ export default function Game(props) {
       }
     } else if (event.target.value.length < 1) {
       if (current > 0) {
-        if (event.keyCode === 8){
-          inputs[current - 1].value = "";
-        }
         inputs[current - 1].focus();
       }
     }
