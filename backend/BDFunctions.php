@@ -1,4 +1,7 @@
 <?php
+/**
+ * Función que realiza una petición recibida por parámetros a la base de datos
+ */
 function bdQuery(string $sql) {
     [$host, $usuario, $password, $bd] = ['localhost', 'palabrados', 'palabrados', 'palabrados'];
     try {
@@ -10,6 +13,9 @@ function bdQuery(string $sql) {
     }
     return $resultado;
 }
+/**
+ * Función que carga a la base de datos las palabras del diccionario desde un fichero txt
+ */
 function loadDictionary(){
     $baseFileName = "../dics/size";
     $extension = ".txt";

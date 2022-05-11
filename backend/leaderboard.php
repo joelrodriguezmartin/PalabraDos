@@ -1,6 +1,9 @@
 <?php
 include_once("BDFunctions.php");
 header('Access-Control-Allow-Origin: *');
+/**
+ * Endpoint que llama a una función que devuelve los datos de la tabla de puntuaciones 
+ */
 function getLeaderBoardData() {
     $sql = ("select username, score 
             from users inner join scores on 

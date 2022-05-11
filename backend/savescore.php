@@ -15,7 +15,9 @@ function saveScore($user, $score) {
         $sql3 = ("UPDATE scores SET score = $newScore where userid = $id");
         $result3 = bdQuery($sql3);
         $savedScore = $result2->fetch(PDO::FETCH_COLUMN);
-        return '{"todoCorrecto": true}';
+        $output = [];
+        $output["todoCorrecto"] = true;
+        echo json_encode($output);
     };
 };
 if (isset($_SESSION["username"])){
@@ -24,6 +26,8 @@ if (isset($_SESSION["username"])){
     }
 }
 else {
-    echo '{"isLoggedIn": false}';
+    $output = [];
+    $output["isLoggedIn"] = false;
+    echo json_encode($output);
 }
 
