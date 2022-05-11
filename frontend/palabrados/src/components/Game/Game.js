@@ -59,6 +59,7 @@ export default function Game(props) {
    * @param {*} event 
    */
   function autoTab(event) {
+    //event.keyCode
     let inputs = Array.from(document.getElementsByClassName("small-input"));
     let current = inputs.indexOf(event.target);
     if (event.target.value.length === parseInt(event.target.attributes.maxlength.value)) {
@@ -67,6 +68,9 @@ export default function Game(props) {
       }
     } else if (event.target.value.length < 1) {
       if (current > 0) {
+        if (event.keyCode === 8){
+          inputs[current - 1].value = "";
+        }
         inputs[current - 1].focus();
       }
     }
