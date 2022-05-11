@@ -13,6 +13,9 @@ function loginUser($username, $password) {
             return '{"username" : "'.$username.'",
                     "isLoggedIn": true}';
         }
+        else{
+            return '{"isLoggedIn": false}';
+        }
     }
     else {
         return '{"isLoggedIn": false}';
