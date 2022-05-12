@@ -74,6 +74,7 @@ export default function Navbar(props) {
         props.setUserName("");
     }
     test();
+    console.log(props.username);
     return (
         <nav className="navbar navbar-dark bg-dark">
             <div className="container-fluid">
@@ -83,6 +84,7 @@ export default function Navbar(props) {
                     <Link className="btn btn-secondary ms-2" to="/leaderboard">Leaderboard</Link>
                 </div>
                 <div>
+                    {props.username !== "" ? <span class="username">{props.username}</span> : null}
                     {props.loggedIn ? <Link className="btn btn-secondary ms-2" to="/profile">Perfil</Link> : null}
                     {props.loggedIn ? null : <Link className="btn btn-secondary ms-2" to="/newaccount">Crear cuenta</Link>}
                     {props.loggedIn ? <button type="button" className="btn btn-secondary ms-2" onClick={logoutUser}>Cerrar sesión</button> : <button type="button" className="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">

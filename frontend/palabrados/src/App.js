@@ -47,7 +47,7 @@ function App() {
     return (
       <div className = "main">
         <Router>
-          <Navbar loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} setUserName={setUsername}></Navbar>
+          <Navbar loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} username={username} setUserName={setUsername}></Navbar>
           <div className="container-fluid bg-secondary text-light">
             <Routes>
               <Route exact path='/' element={
@@ -60,7 +60,7 @@ function App() {
                 <NewAccount loggedIn = {loggedIn}></NewAccount>}>
               </Route>
               <Route exact path='/profile' element={
-                <Profile loggedIn = {loggedIn} username={username}></Profile>}>
+                <Profile loggedIn = {loggedIn} setLoggedIn = {setLoggedIn} username={username}></Profile>}>
               </Route>
               <Route exact path='/rules' element={
                 <Rules></Rules>}>

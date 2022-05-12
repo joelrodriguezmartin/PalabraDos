@@ -113,6 +113,9 @@ body{
   font-size: xx-large;
   font-weight: 800;
 }
+.username{
+  color: white;
+}
 
 @media (max-width: 600px) {
   .logo{

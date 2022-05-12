@@ -54,6 +54,10 @@ export default function Game(props) {
     }
     return uiItems;
   };
+  /**
+   * Función utilizada para mover el focus entre los campos de letra al borrar letras
+   * @param {*} event 
+   */
   function deleteAlso(event){
     let inputs = Array.from(document.getElementsByClassName("small-input"));
     let current = inputs.indexOf(event.target);
@@ -67,7 +71,7 @@ export default function Game(props) {
     }
   }
   /**
-   * Función utilizada para mover el focus entre los campos de letra del juego
+   * Función utilizada para mover el focus entre los campos de letra del juego al introducir letras
    * @param {*} event 
    */
   function autoTab(event) {
@@ -77,11 +81,11 @@ export default function Game(props) {
       if (current < props.length - 1) {
         inputs[current + 1].focus();
       }
-    } else if (event.target.value.length < 1) {
+    } /*else if (event.target.value.length < 1) {
       if (current > 0) {
         inputs[current - 1].focus();
       }
-    }
+    }*/
   }
   /**
    * Enseñamos el contenido de fin de partida condicionalmente
@@ -193,8 +197,7 @@ export default function Game(props) {
    */
   async function saveScore(localScore) {
     const response = await fetch("http://localhost/backend/savescore.php?score="+localScore, {credentials: "include"});
-    const data = await response.json();
-    console.log(data);
+    await response.json();
   }
   /**
    * Función que realiza las comprobaciones de letras y posiciones, la más importante del juego

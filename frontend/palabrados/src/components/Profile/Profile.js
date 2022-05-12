@@ -25,6 +25,32 @@ export default function Profile(props) {
             fetchData();
         }
     }, [props.loggedIn, navigate]);
+    /**
+     * Función que elimina el usuario despues de pedirle su contraseña.
+     * @param {*} user 
+     * @param {*} pass 
+     */
+     async function deleteUser() {
+        const url = "http://localhost/backend/deleteuser.php"
+        let pass = prompt("Introduce tu contraseña para confirmar (EL BORRADO ES IRREVERSIBLE)");
+        let formdata = new FormData();
+        formdata.append("password", pass);
+        const response = await fetch(url, { 
+            method: 'post',
+            credentials: "include", 
+            body: formdata
+        });
+        const data = await response.json();
+        if (data.success) {
+            props.setLoggedIn(data.isLoggedIn);
+            props.setUsername("");
+            alert("Su cuenta ha sido eliminada")
+            navigate("/");
+        } else if (!data.success) {
+            console.log(data);
+            alert("Error en contraseña, inténtalo de nuevo");
+        }
+    }
     if (scoreIsLoaded) {
         return (
             <div className="container main">
@@ -34,6 +60,9 @@ export default function Profile(props) {
                     </div>
                     <div className="col-12 text-center">
                         <span className="profile1">Puntuacion total: </span><span className="profile">{userScore}</span>
+                    </div>
+                    <div className="col-12 text-center">
+                        <button onClick={deleteUser} className="btn btn-dark">Borrar Usuario</button>
                     </div>
                 </div>
 
