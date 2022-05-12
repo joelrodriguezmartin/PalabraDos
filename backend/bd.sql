@@ -17,7 +17,7 @@ CREATE TABLE scores (
     userid INT NOT NULL,
     score INT NOT NULL,
     PRIMARY KEY(score_id),
-    FOREIGN KEY(userid)REFERENCES users(userid)
+    FOREIGN KEY(userid)REFERENCES users(userid) ON DELETE CASCADE
 )   ENGINE=InnoDB;
 
 CREATE TABLE dictionary (
