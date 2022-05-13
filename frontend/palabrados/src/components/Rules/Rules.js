@@ -11,7 +11,7 @@ export default function Rules() {
                 <div className="col-12 text-center">
                     PalabraDos es un juego de adivinación de palabras en el que conseguirás puntos por cada letra acertada.<br /><br />
                     En primer lugar selecciona tu dificultad, lo que cambiará el numero de letras por palabra, pero también la puntuación que conseguirás.<br /><br />
-                    A continuación empieza una partida y tendras tantos intentos como letras haya en la palabra para adivinarla. Solo se considerarán 
+                    A continuación empieza una partida y tendras tantos intentos como letras haya en la palabra a adivinar. Solo se considerarán 
                     palabras válidas aquellas que estén en nuestro diccionario y que rellenen todos los campos de letra. <br/><br/>
                     Si lo consigues y eres un usuario registrado tu puntuación se sumará a tu perfil, y los 10 usuarios con mejores puntuaciones aparecerán
                     en nuestra tabla de puntuaciones públicas.<br/><br/>

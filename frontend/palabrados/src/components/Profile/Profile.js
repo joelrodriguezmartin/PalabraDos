@@ -62,7 +62,7 @@ export default function Profile(props) {
                         <span className="profile1">Puntuacion total: </span><span className="profile">{userScore}</span>
                     </div>
                     <div className="col-12 text-center">
-                        <button onClick={deleteUser} className="btn btn-dark">Borrar Usuario</button>
+                        <button onClick={deleteUser} className="btn btn-dark">Borrar Cuenta</button>
                     </div>
                 </div>
 
