@@ -32,7 +32,7 @@ function loadDictionary(){
             }
             fclose($handle);
         }else {
-            echo("ME MEOOOO");
+            echo("Fallo cargando el diccionario");
         }
     }
 }

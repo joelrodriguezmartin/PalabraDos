@@ -32,8 +32,6 @@ export default function Navbar(props) {
         const elements = event.target.elements;
 
         if (elements["loginpassword"].value.length >= 5 || elements["loginusername"] >= 5) {
-            //let url = "http://localhost/backend/login.php?username=" + elements["loginusername"].value + "&password=" + elements["loginpassword"].value;
-            //console.log(url);
             loginUser(elements["loginusername"].value, elements["loginpassword"].value);
         } else {
             alert("La contraseña y el usuario deben tener al menos 5 caracteres")

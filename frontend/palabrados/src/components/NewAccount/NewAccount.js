@@ -25,7 +25,6 @@ export default function NewAccount(props) {
     const elements = event.target.elements;
     if (elements["registerpassword1"].value === elements["registerpassword2"].value) {
       if (elements["registerpassword1"].value.length >= 5 || elements["registerusername"] >= 5) {
-        //let url = "http://localhost/backend/register.php?username=" + elements["registerusername"].value + "&password=" + elements["registerpassword1"].value;
         registerUser(elements["registerusername"].value, elements["registerpassword1"].value);
       } else {
         alert("La contraseña y el usuario deben tener al menos 5 caracteres")
@@ -47,7 +46,6 @@ export default function NewAccount(props) {
     formdata.append("password", pass);
     const response = await fetch(url, {
       method: 'post',
-      //credentials: "include", 
       body: formdata
     });
     const data = await response.json();

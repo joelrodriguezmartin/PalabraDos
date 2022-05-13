@@ -19,7 +19,6 @@ function deleteUser($username, $password) {
                 $output["success"] = true;
                 $output["isLoggedIn"] = false;
                 session_destroy();
-                //return $output;
             }
         }
         else{

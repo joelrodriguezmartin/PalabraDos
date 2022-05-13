@@ -12,8 +12,6 @@ if (isset($_SESSION["username"])){
     $output["username"] = $_SESSION["username"];
     $output["isLoggedIn"] = true;
     echo json_encode($output);
-    /*echo '{"username" : "'.$_SESSION["username"].'",
-        "isLoggedIn": true}';*/
 }
 else {
     $output["isLoggedIn"] = false;

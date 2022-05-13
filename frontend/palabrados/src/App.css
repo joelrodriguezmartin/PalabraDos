@@ -7,11 +7,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #212529 ;
@@ -27,7 +22,7 @@
 .App-link {
   color: #61dafb;
 }
-
+/*Loader que se muestra mientras los datos cargan*/
 .loader {
   position: fixed; /* or absolute */
   top: 50%;
@@ -39,7 +34,7 @@
   height: 120px;
   animation: spin 2s linear infinite;
 }
-
+/* Animación usada por el loader*/
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -56,12 +51,10 @@
 body{
   background-color: #6c757d !important;
 }
-/*.gamecontainer{
-
-}*/
 .none{
   display: none;
 }
+/*Estilo de los input de letra del juego*/
 .small-input {
   text-align: center;
   font-size: 40px;
@@ -87,11 +80,6 @@ body{
 .underline{
   text-decoration: underline;
 }
-/*.gamebutton{
-  background-color: #212529 ;
-  color: white;
-  margin-top: 15px;
-}*/
 .bg-modal{
   background-color: #212529 ; 
 }

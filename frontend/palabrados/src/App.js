@@ -42,6 +42,7 @@ function App() {
     }
     fetchData();
   }, [url]);
+  
   if (dataIsLoaded) {
     checkSession();
     return (

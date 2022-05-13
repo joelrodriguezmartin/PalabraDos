@@ -3,6 +3,9 @@ include_once("BDFunctions.php");
 header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
 session_start();
+/**
+ * Endpoint que recibe una puntuación y la guarda en la tabla del usuario con la sesión iniciada
+ */
 function saveScore($user, $score) {
     $sql = ("SELECT userid FROM users WHERE username = '$user'");
     $result = bdQuery($sql);//Obtenemos el id de usuario

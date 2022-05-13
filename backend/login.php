@@ -12,13 +12,10 @@ function loginUser($username, $password) {
     $result = bdQuery($sql);
     $output = [];
     if($hashpass = $result->fetch(PDO::FETCH_COLUMN)){
-        //Añadir sesión aqui
         if (password_verify($password, $hashpass)){
             $_SESSION["username"] = $username;
             $output["username"] = $username;
             $output["isLoggedIn"] = true;
-            /*return '{"username" : "'.$username.'",
-                    "isLoggedIn": true}';*/
         }
         else{
             $output["isLoggedIn"] = false;

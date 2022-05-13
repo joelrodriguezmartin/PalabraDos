@@ -1,6 +1,9 @@
 <?php
 include_once("BDFunctions.php");
 header('Access-Control-Allow-Origin: *');
+/**
+ * Endpoint de registro del usuario, recibe peticiones con usuario y contraseña como parametros
+ */
 function registerUser($username, $password) {
     $output = [];
     $sql = ("SELECT userid FROM users where username = '$username'");
