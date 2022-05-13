@@ -72,6 +72,8 @@ export default function Navbar(props) {
         await response.json();
         props.setLoggedIn(false);
         props.setUsername("");
+        document.getElementById("loginusername").value = "";
+        document.getElementById("loginpassword").value= "";
     }
     test();
     console.log(props.username);
@@ -101,11 +103,11 @@ export default function Navbar(props) {
                                     <form onSubmit={handleSubmit}>
                                         <div className="form-group text-center mx-4">
                                             <label htmlFor="user" className="text-light">Nombre de usuario:</label><br />
-                                            <input type="text" name="loginusername" className="form-control"></input>
+                                            <input type="text" name="loginusername" className="form-control" id="loginusername"></input>
                                         </div>
                                         <div className="form-group text-center mt-4 mx-4">
                                             <label htmlFor="password" className="text-light">Contraseña</label><br />
-                                            <input type="password" name="loginpassword" className="form-control"></input>
+                                            <input type="password" name="loginpassword" className="form-control" id="loginpassword"></input>
                                         </div>
                                         <div className="form-group text-center mt-4">
                                             <button type="submit" className="btn btn-secondary">Iniciar sesion</button>
