@@ -89,14 +89,14 @@ export default function Navbar(props) {
                     {props.username !== "" ? <span className="username">{props.username}</span> : null}
                     {props.loggedIn ? <Link className="btn btn-secondary ms-2" to="/profile">Perfil</Link> : null}
                     {props.loggedIn ? null : <Link className="btn btn-secondary ms-2" to="/newaccount">Crear cuenta</Link>}
-                    {props.loggedIn ? <button type="button" className="btn btn-secondary ms-2" onClick={logoutUser}>Cerrar sesión</button> : <button type="button" className="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    {props.loggedIn ? <button type="button" className="btn btn-secondary ms-2" onClick={logoutUser}>Cerrar sesión</button> : <button type="button" className="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#modal">
                         Inicia sesión
                     </button>}
-                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade" id="modal" tabIndex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content bg-dark">
                                 <div className="modal-header">
-                                    <h5 className="modal-title text-light" id="exampleModalLabel">Inicia sesión</h5>
+                                    <h5 className="modal-title text-light" id="modalLabel">Inicia sesión</h5>
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div className="modal-body">
