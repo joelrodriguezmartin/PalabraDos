@@ -4,8 +4,8 @@ header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
 session_start();
 /**
- * Endpoint de login, recibe los datos de usuario, comprueba si existe en la base de datos y si coincide la contraseña hasheada
- * y en caso afirmativo devuelve un objeto json con los datos necesarios para mantener la sesión iniciada.
+ * Endpoint de borrado de usuario, recibe los datos de usuario, comprueba si existe en la base de datos y si coincide la contraseña hasheada
+ * y en caso afirmativo borra al usuario y cierra la sesión.
  */
 function deleteUser($username, $password) {
     $sql = ("SELECT user_hashpass FROM users WHERE username = '$username'");

@@ -110,7 +110,7 @@ export default function Game(props) {
     return uiItems;
   };
   /**
-   * Recargamos la página para evitar problemas
+   * Función que resetea los datos de la app y la actividad de los botones
    */
   function reset() {
     setTries(0);

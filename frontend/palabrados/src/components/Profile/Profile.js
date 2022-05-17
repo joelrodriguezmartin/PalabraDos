@@ -47,7 +47,6 @@ export default function Profile(props) {
             alert("Su cuenta ha sido eliminada")
             navigate("/");
         } else if (!data.success) {
-            console.log(data);
             alert("Error en contraseña, inténtalo de nuevo");
         }
     }

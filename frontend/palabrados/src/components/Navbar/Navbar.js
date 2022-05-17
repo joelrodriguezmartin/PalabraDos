@@ -61,7 +61,6 @@ export default function Navbar(props) {
             closeModal();
             navigate("/");
         } else if (!data.isLoggedIn) {
-            console.log(data);
             alert("Fallo en usuario o contraseña");
         }
     }
