@@ -64,17 +64,17 @@ export default function NewAccount(props) {
       <form className="text-center pt-3" name="formName" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="registerusername" className="form-label">Nombre de usuario</label>
-          <input type="text" className="form-control registerinput mx-auto" id="registerusername" required pattern="[a-zA-Z0-9]+" />
-          <p className="validity">El nombre de usuario requiere 5 caracteres alfanuméricos sin espacios (a-z 0-9)</p>
+          <input type="text" className="form-control registerinput mx-auto" id="registerusername" required pattern="[a-zA-Z0-9\u00f1\u00d1]{5,15}" />
+          <p className="validity">El nombre de usuario requiere entre 5 y 15 caracteres alfanuméricos sin espacios (a-z 0-9)</p>
         </div>
         <div className="mb-4">
           <label htmlFor="registerpassword1" className="form-label">Contraseña</label>
-          <input type="password" className="form-control registerinput mx-auto" id="registerpassword1" required pattern="[a-zA-Z0-9]+" />
-          <p className="validity">La contraseña requiere 5 caracteres alfanuméricos sin espacios (a-z 0-9)</p>
+          <input type="password" className="form-control registerinput mx-auto" id="registerpassword1" required pattern="[a-zA-Z0-9\u00f1\u00d1]{5,15}" />
+          <p className="validity">La contraseña requiere entre 5 y 15 caracteres alfanuméricos sin espacios (a-z 0-9)</p>
         </div>
         <div className="mb-4">
           <label htmlFor="registerpassword2" className="form-label">Confirma contraseña</label>
-          <input type="password" className="form-control registerinput mx-auto" id="registerpassword2" required pattern="[a-zA-Z0-9]+" />
+          <input type="password" className="form-control registerinput mx-auto" id="registerpassword2" required pattern="[a-zA-Z0-9\u00f1\u00d1]{5,15}" />
           <p className="validity">Las contraseñas deben coincidir</p>
         </div>
         <button type="submit" className="btn btn-dark">Registrar</button>

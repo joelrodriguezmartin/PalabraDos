@@ -74,7 +74,6 @@ export default function Navbar(props) {
         document.getElementById("loginpassword").value= "";
     }
     test();
-    console.log(props.username);
     return (
         <nav className="navbar navbar-dark bg-dark">
             <div className="container-fluid">
