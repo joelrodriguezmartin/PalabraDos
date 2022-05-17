@@ -2,7 +2,7 @@
 include_once("BDFunctions.php");
 header('Access-Control-Allow-Origin: *');
 /**
- * Función que devuelve las palabras de un tamaño recibido por parámetros
+ * Endpoint que devuelve las palabras de la base de datos que tienen  un tamaño concreto recibido por parámetros.
  */
 function getWordsByLength($length) {
     $sql = ("SELECT word_name FROM dictionary where word_length = $length");

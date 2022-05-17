@@ -81,11 +81,7 @@ export default function Game(props) {
       if (current < props.length - 1) {
         inputs[current + 1].focus();
       }
-    } /*else if (event.target.value.length < 1) {
-      if (current > 0) {
-        inputs[current - 1].focus();
-      }
-    }*/
+    } 
   }
   /**
    * Enseñamos el contenido de fin de partida condicionalmente
@@ -105,9 +101,19 @@ export default function Game(props) {
       }else{
         uiItems.push(<div key="c">Inicia sesión o regístrate para acumular tus puntuaciones</div>);
       }
-      uiItems.push(<button key="d" onClick={reset} className="btn btn-dark mt-2">Jugar otra vez</button>)
+      uiItems.push(<button key="d" onClick={reset} className="btn btn-dark mt-2">Volver a empezar</button>)
     }
     return uiItems;
+  };
+  /**
+   * Funcion que inicia la partida con el primer intento y asignando la palabra
+   */
+   function newGame() {
+    setTries(1);
+    setCurrentWord(props.wordList[Math.floor(Math.random() * props.wordList.length)]);
+    document.getElementById("startbutton").disabled = true;
+    document.getElementById("startbutton").classList.add("none");
+    document.getElementById("dropdownDifficulty").disabled = true;
   };
   /**
    * Función que resetea los datos de la app y la actividad de los botones
@@ -122,16 +128,6 @@ export default function Game(props) {
     document.getElementById("startbutton").classList.remove("none");
     document.getElementById("dropdownDifficulty").disabled = false;
   }
-  /**
-   * Funcion que inicia la partida con el primer intento y asignando la palabra
-   */
-  function newGame() {
-    setTries(1);
-    setCurrentWord(props.wordList[Math.floor(Math.random() * props.wordList.length)]);
-    document.getElementById("startbutton").disabled = true;
-    document.getElementById("startbutton").classList.add("none");
-    document.getElementById("dropdownDifficulty").disabled = true;
-  };
   /**
    * Función ejecutada en el submit, evita la recarga de la página y recoge los datos de los
    * input de tipo texto y los introduce en un array.
