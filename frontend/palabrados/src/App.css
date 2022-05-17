@@ -7,7 +7,9 @@
   pointer-events: none;
 }
 
-
+.main{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .App-header {
   background-color: #212529 ;
   min-height: 100vh;
