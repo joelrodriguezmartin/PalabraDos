@@ -20,7 +20,7 @@ export default function Game(props) {
    * Funcion de desarrollo. hace lo que se necesite en el momento 
    */
   function test() {
-    console.log(currentWord);
+    //console.log(currentWord);
   }
   /**
    * Función que renderiza los inputs de letras dependiendo del tamaño de palabra e intento
