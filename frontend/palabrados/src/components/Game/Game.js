@@ -20,7 +20,7 @@ export default function Game(props) {
    * Funcion de desarrollo. hace lo que se necesite en el momento 
    */
   function test() {
-    //console.log(currentWord);
+    console.log(currentWord);
   }
   /**
    * Función que renderiza los inputs de letras dependiendo del tamaño de palabra e intento
@@ -94,7 +94,7 @@ export default function Game(props) {
       if (winBool) {
         uiItems.push(<div key="b">Has ganado con una puntuacion de {score}</div>);
       } else {
-        uiItems.push(<div key="b">Has perdido con una puntuacion de {score}</div>);
+        uiItems.push(<div key="b">Has perdido con una puntuacion de {score}, la palabra correcta era <span className='good uppercase'>{currentWord}</span></div>);
       }
       if (props.loggedIn){
         uiItems.push(<div key="c">Se ha sumado la puntuación a tu perfil, {props.username}</div>);

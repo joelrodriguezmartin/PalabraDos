@@ -62,7 +62,7 @@ body{
   font-size: 40px;
   width: 2em;
   height: 2em;
-  text-transform: capitalize;
+  text-transform: uppercase;
   border: 0px;
   border-radius: 5px;
   margin: 15px 2px; 
@@ -75,6 +75,9 @@ body{
 .good{
   background-color: #1147DD;
   border-radius: 5px;
+}
+.uppercase{
+  text-transform: uppercase;
 }
 .points {
   background-color: green;
